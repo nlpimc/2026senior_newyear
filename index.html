@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026 樂齡新年：2026春節吉祥動物尋福</title>
+    <title>2026 樂齡新年：春節吉祥動物尋福</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
     
@@ -251,7 +251,7 @@
                 <div id="result-blessing" class="blessing-quote">祝福語</div>
 
                 <div class="books-container">
-                    <div class="books-header"><span>📚</span> 2026 開卷好書推薦（隨機精選）</div>
+                    <div class="books-header"><span>📚</span> 2026 開卷好書推薦</div>
                     <div id="book-list"></div>
                 </div>
 
@@ -450,7 +450,7 @@
                 document.getElementById('page-result').classList.add('active');
                 window.scrollTo(0,0);
                 
-                // 延遲 1.5 秒後跳出領取明信片提示
+                // 延遲 3 秒後跳出領取明信片提示
                 setTimeout(openModal, 1500);
             }, 1500);
         }
@@ -466,8 +466,8 @@
         function shareResult() {
             if (navigator.share) {
                 navigator.share({
-                    title: '2026 秘境靈獸尋福',
-                    text: '快來領取你的2026新年守護獸與明信片！',
+                    title: '2026春節吉祥動物尋福',
+                    text: '快來領取你的2026新年吉祥動物與明信片！',
                     url: window.location.href
                 });
             } else { alert('連結已複製！快去分享給朋友吧！'); }
@@ -476,6 +476,7 @@
 </body>
 
 </html>
+
 
 
 
