@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 樂齡新年：臺灣秘境靈獸尋福</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 全局變數 --- */
+        :root {
+            --color-primary: #8B0000; /* 故宮紅 */
+            --color-secondary: #B8860B; /* 暗金 */
+            --color-bg-light: #F9F7F2; /* 宣紙白 */
+            --color-text-dark: #2C3E50;
+            --font-serif: 'Noto Serif TC', serif;
+            --font-sans: 'Noto Sans TC', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: linear-gradient(135deg, #F9F7F2 0%, #EFEBE2 100%);
+            color: var(--color-text-dark);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* --- 主容器 --- */
+        .container {
+            max-width: 800px;
+            width: 90%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px 30px;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1), 0 0 0 1px rgba(184, 134, 11, 0.2) inset;
+            position: relative;
+            transition: all 0.5s ease-out;
+        }
+
+        /* --- 裝飾元素 --- */
+        .deco-corner {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--color-secondary);
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        .top-left { top: 15px; left: 15px; border-right: none; border-bottom: none; border-radius: 10px 0 0 0; }
+        .top-right { top: 15px; right: 15px; border-left: none; border-bottom: none; border-radius: 0 10px 0 0; }
+        .bottom-left { bottom: 15px; left: 15px; border-right: none; border-top: none; border-radius: 0 0 0 10px; }
+        .bottom-right { bottom: 15px; right: 15px; border-left: none; border-top: none; border-radius: 0 0 10px 0; }
+
+        h1 {
+            font-family: var(--font-serif);
+            color: var(--color-primary);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 0.05em;
+        }
+        h2 {
+            font-family: var(--font-sans);
+            font-weight: 300;
+            color: #5D6D7E;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        /* --- 按鈕 --- */
+        .btn-primary {
+            background: linear-gradient(145deg, #8B0000 0%, #A52A2A 100%);
+            color: #fff;
+            font-size: 1.2rem;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(139, 0, 0, 0.2);
+            transition: transform 0.2s;
+            letter-spacing: 1px;
+        }
+        .btn-primary:hover { transform: translateY(-2px); }
+
+        /* --- 選項 --- */
+        .option-grid { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
+        .option-btn {
+            background: #fff; border: 1px solid #E0E0E0; padding: 20px;
+            border-radius: 12px; font-size: 1.1rem; color: var(--color-text-dark);
+            cursor: pointer; transition: all 0.3s ease; text-align: left;
+            position: relative; overflow: hidden;
+        }
+        .option-btn:hover {
+            border-color: var(--color-secondary); background-color: #FFFCF5;
+            transform: translateX(5px);
+        }
+
+        /* --- 結果頁面 --- */
+        .animal-image-frame {
+            width: 100%; height: 260px; background-color: #f0f0f0;
+            border-radius: 16px; overflow: hidden; margin-bottom: 5px;
+            border: 4px solid #fff; box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .real-animal-img {
+            width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;
+        }
+        .real-animal-img:hover { transform: scale(1.05); }
+
+        /* 圖片來源樣式 */
+        .img-credit-link {
+            display: block;
+            font-size: 0.8rem;
+            color: #999;
+            text-decoration: none;
+            text-align: right;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        .img-credit-link:hover { color: var(--color-primary); text-decoration: underline; }
+
+        .blessing-quote {
+            font-family: var(--font-serif); font-size: 1.5rem; color: var(--color-primary);
+            line-height: 1.6; margin-bottom: 30px; font-weight: bold;
+            background: linear-gradient(to right, transparent, rgba(255, 215, 0, 0.1), transparent);
+            padding: 10px 0;
+        }
+
+        /* --- 書籍推薦 --- */
+        .books-container {
+            text-align: left; background-color: #FFFCF9; border: 1px solid #F3E5D8;
+            border-radius: 16px; padding: 25px; margin-top: 20px;
+        }
+        .books-header {
+            color: var(--color-secondary); font-weight: bold; font-size: 1.1rem;
+            border-bottom: 2px solid rgba(184, 134, 11, 0.1); padding-bottom: 10px; margin-bottom: 20px;
+        }
+        .book-item { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px dashed #E0E0E0; }
+        .book-item:last-child { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+        .book-title { font-size: 1.15rem; font-weight: 700; color: #2C3E50; display: block; text-decoration: none; margin-bottom: 5px;}
+        .book-title:hover { color: var(--color-primary); }
+        .book-desc { font-size: 0.95rem; color: #666; line-height: 1.5; margin-bottom: 10px; }
+        .book-reason-tag {
+            font-size: 0.85rem; background: rgba(184, 134, 11, 0.1); color: var(--color-secondary);
+            padding: 2px 8px; border-radius: 4px; font-weight: bold; margin-right: 5px;
+        }
+        .book-link-btn {
+            display: inline-block; font-size: 0.9rem; color: #fff;
+            background-color: #8B0000; padding: 6px 15px; border-radius: 4px;
+            text-decoration: none; transition: background 0.3s;
+        }
+        .book-link-btn:hover { background-color: #a93226; }
+
+        /* --- 合辦單位 Footer --- */
+        .footer-credit {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            font-size: 0.95rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* --- 彈出式提示窗 (Modal) --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6); z-index: 2000;
+            display: flex; justify-content: center; align-items: center;
+            opacity: 0; visibility: hidden; transition: all 0.4s ease;
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        
+        .modal-box {
+            background: #fff; width: 90%; max-width: 400px;
+            padding: 30px; border-radius: 20px; text-align: center;
+            border: 2px solid var(--color-secondary);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            transform: scale(0.8); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .modal-overlay.active .modal-box { transform: scale(1); }
+
+        .modal-icon { font-size: 3rem; margin-bottom: 15px; animation: pulse 2s infinite; }
+        .modal-title { font-family: var(--font-serif); color: var(--color-primary); font-size: 1.5rem; margin-bottom: 10px; }
+        .modal-text { color: #555; line-height: 1.6; margin-bottom: 25px; font-size: 1.1rem; }
+        
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+
+        /* --- 頁面控制 --- */
+        .page { display: none; }
+        .page.active { display: block; animation: fadeIn 0.8s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Loader */
+        .loader {
+            border: 5px solid #f3f3f3; border-top: 5px solid var(--color-primary);
+            border-radius: 50%; width: 50px; height: 50px;
+            animation: spin 1s linear infinite; margin: 20px auto;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="deco-corner top-left"></div>
+        <div class="deco-corner top-right"></div>
+        <div class="deco-corner bottom-left"></div>
+        <div class="deco-corner bottom-right"></div>
+
+        <div id="page-intro" class="page active">
+            <div style="font-size: 3.5rem; margin-bottom: 10px;">🏮</div>
+            <h1>2026 秘境靈獸尋福</h1>
+            <h2>探索您的年度關鍵字，遇見專屬守護靈獸</h2>
+            <p style="line-height: 1.8; color: #555; margin-bottom: 40px;">
+                新的一年，每一個選擇都代表一種心境。<br>
+                透過三個簡單的提問，<br>
+                我們將為您揭曉屬於您的 2026 守護動物，<br>
+                並獻上圖書館為您精選的好書。
+            </p>
+            <button class="btn-primary" onclick="startQuiz()">開始測驗</button>
+        </div>
+
+        <div id="page-question" class="page">
+            <div style="font-size: 1.2rem; color: var(--color-secondary); margin-bottom: 10px;">
+                Question <span id="q-current">1</span> / 3
+            </div>
+            <h3 id="question-text" style="font-size: 1.5rem; margin-bottom: 30px; color: #333;">問題內容</h3>
+            <div id="options-area" class="option-grid"></div>
+        </div>
+
+        <div id="page-loading" class="page">
+            <div class="loader"></div>
+            <p>正在尋找您的守護靈獸...</p>
+        </div>
+
+        <div id="page-result" class="page">
+            <div class="animal-display">
+                <div class="animal-image-frame">
+                    <img id="result-img" src="" alt="動物圖片" class="real-animal-img">
+                </div>
+                <a id="img-source-link" href="#" target="_blank" class="img-credit-link">圖片來源：雪霸國家公園</a>
+                
+                <div style="font-size: 0.9rem; letter-spacing: 2px; color: #999; text-transform: uppercase;">Your Spirit Animal</div>
+                <h1 id="result-animal" style="margin-top: 5px;">動物名稱</h1>
+                
+                <div id="result-blessing" class="blessing-quote">祝福語</div>
+
+                <div class="books-container">
+                    <div class="books-header"><span>📚</span> 2026 開卷好書推薦（隨機精選）</div>
+                    <div id="book-list"></div>
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <button class="btn-primary" onclick="shareResult()">分享祝福</button>
+                    <button onclick="location.reload()" style="background:none; border:none; color:#999; margin-top:15px; cursor:pointer; text-decoration:underline;">再玩一次</button>
+                </div>
+
+                <div class="footer-credit">
+                    合辦單位：雪霸國家公園
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="postcard-modal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-icon">🧧</div>
+            <h3 class="modal-title">恭喜完成尋福</h3>
+            <p class="modal-text">
+                請憑此畫面至櫃台<br>
+                領取您的<b style="color:var(--color-primary);">專屬新年明信片</b>
+            </p>
+            <button class="btn-primary" style="padding: 10px 30px; font-size: 1rem;" onclick="closeModal()">我知道了</button>
+        </div>
+    </div>
+
+    <script>
+        // --- 資料庫 ---
+        const questions = [
+            {
+                text: "回顧 2025 年，您最想感謝自己的是？",
+                options: [
+                    { text: "知識與智慧的增長 (學習)", tags: ['慧', '安'] },
+                    { text: "充沛的活力與行動力 (健康)", tags: ['新', '旅'] },
+                    { text: "與家人朋友的溫暖時光 (情感)", tags: ['富', '安'] }
+                ]
+            },
+            {
+                text: "展望 2026 年，您最期待生活能擁有的是？",
+                options: [
+                    { text: "財務上的安心與豐盛", tags: ['富', '新'] },
+                    { text: "探索未知、開拓新視野", tags: ['旅', '慧'] },
+                    { text: "身心靈的平靜與滿足", tags: ['安', '慧'] }
+                ]
+            },
+            {
+                text: "如果用一個形容詞描述新的一年，您會選？",
+                options: [
+                    { text: "煥然一新，充滿朝氣", tags: ['新', '旅'] },
+                    { text: "穩健踏實，福氣滿滿", tags: ['富', '安'] },
+                    { text: "洞察先機，充滿智慧", tags: ['慧', '富'] }
+                ]
+            }
+        ];
+
+        // 書籍資料庫 (已擴充為4本)
+        const animalData = {
+            '富': {
+                name: '台灣長耳蝠',
+                blessing: '耳蝠送福氣，<br>財富滾滾來。',
+                image: 'images/01.jpg', 
+                creditUrl: 'https://www.spnp.gov.tw/News_Content_table.aspx?n=14566&s=240396',
+                books: [
+                    { title: '全家人的幸福理財', desc: '從買屋到存股、領終身月退俸的人生布局', url: 'https://ipac.nlpi.edu.tw/bookDetail/781190'},
+                    { title: '窮查理的普通常識', desc: '巴菲特50年智慧合夥人查理.蒙格的人生哲學', url: 'https://ipac.nlpi.edu.tw/bookDetail/121209'},
+                    { title: '不擔憂的後半生', desc: '聰明規畫財務、健康、身後事, 好命退休不是夢', url: 'https://ipac.nlpi.edu.tw/bookDetail/808971'},
+                    { title: '退休後, 錢從哪裡來?', desc: '掌握兩大養老現金流, 打敗未來高齡化又高通膨的財務計畫', url: 'https://ipac.nlpi.edu.tw/bookDetail/808183'}
+                ]
+            },
+            '新': {
+                name: '白面鼯鼠',
+                blessing: '展翼迎新春，<br>好運輕鬆來。',
+                image: 'images/02.jpg',
+                creditUrl: 'https://www.spnp.gov.tw/News_Content_table.aspx?n=14566&s=240418',
+                books: [
+                    { title: '高中生也看得懂 機器學習的數學基礎', desc: 'AI.深度學習打底必讀', url: 'https://ipac.nlpi.edu.tw/bookDetail/735464'},
+                    { title: '超高齡社會的消費行為學', desc: '掌握中高齡族群心理 洞察銀髮市場新趨勢', url: 'https://ipac.nlpi.edu.tw/bookDetail/611485'},
+                    { title: '晚退休時代', desc: '轉型超高齡社會未來關鍵30年,我們如何工作,怎麼生活?', url: 'https://ipac.nlpi.edu.tw/bookDetail/626104'},
+                    { title: 'AI時代的超級老人', desc: '爸媽老後長照靠AI, 未來的你安心變老', url: 'https://ipac.nlpi.edu.tw/bookDetail/815973'}
+                ]
+            },
+            '慧': {
+                name: '黃魚鴞',
+                blessing: '黃鴞啟慧識，<br>事事皆洞明。',
+                image: 'images/03.jpg',
+                creditUrl: 'https://www.spnp.gov.tw/News_Content.aspx?n=14500&s=239305',
+                books: [
+                    { title: '我, 91歲依然熱愛學習', desc: '在生活、旅行、互助當中, 找到想做的事, 快樂去做', url: 'https://ipac.nlpi.edu.tw/bookDetail/823356'},
+                    { title: '刻意練習', desc: '原創者全面解析,比天賦更關鍵的學習法', url: 'https://ipac.nlpi.edu.tw/bookDetail/586512'},
+                    { title: '50歲的學習法', desc: '學習永遠不嫌晚，開啟人生第二曲線', url: 'https://ipac.nlpi.edu.tw/bookDetail/687886'},
+                    { title: '最高學以致用法', desc: '讓學習發揮最大成果的輸出大全', url: 'https://ipac.nlpi.edu.tw/bookDetail/737012'}
+                ]
+            },
+            '旅': {
+                name: '寬尾鳳蝶',
+                blessing: '鳳蝶自在飛，<br>人生樂暢遊。',
+                image: 'images/04.jpg',
+                creditUrl: 'https://www.spnp.gov.tw/News_Content.aspx?n=14470&s=328399',
+                books: [
+                    { title: '勇敢出發吧!退休後我去日本留學Long stay', desc: '讓自己再冒險一次, 到日本實現學習、旅居', url: 'https://ipac.nlpi.edu.tw/bookDetail/817867'},
+                    { title: '終於一個人去旅行', desc: '儲存好心情, 帶自己看看這個世界', url: 'https://ipac.nlpi.edu.tw/bookDetail/811225'},
+                    { title: '大人的旅行準備', desc: '專為熟齡設計的旅行規劃，讓旅途更輕鬆自在', url: 'https://ipac.nlpi.edu.tw/bookDetail/723522'},
+                    { title: '出發台灣山林', desc: '新手也能走, 從里山到深山的步道小旅行', url: 'https://ipac.nlpi.edu.tw/bookDetail/761049'}
+                ]
+            },
+            '安': {
+                name: '櫻花鉤吻鮭',
+                blessing: '鮭躍迎新春，<br>闔家保安康。',
+                image: 'images/05.jpg',
+                creditUrl: 'https://www.spnp.gov.tw/News_Content_table.aspx?n=14568&s=240451',
+                books: [
+                    { title: '原來如此 : 幸福是樂齡者唯一的任務', desc: '幸福是樂齡者唯一的任務，找回生活熱情', url: 'https://ipac.nlpi.edu.tw/bookDetail/792552'},
+                    { title: '哈佛教你幸福一輩子', desc: '史上最長80年指標研究,揭露快樂到老的智慧', url: 'https://ipac.nlpi.edu.tw/bookDetail/717124'},
+                    { title: '100歲的幸福論', desc: '開心生活的五大祕訣，長壽也要長樂', url: 'https://ipac.nlpi.edu.tw/bookDetail/711047'},
+                    { title: '50歲後,也可以過幸福日子', desc: '保坂隆教大家花小錢,有品味地享受人生', url: 'https://ipac.nlpi.edu.tw/bookDetail/706409'}
+                ]
+            }
+        };
+
+        // --- 邏輯控制 ---
+        let currentQ = 0;
+        let scores = {};
+
+        function startQuiz() {
+            document.getElementById('page-intro').classList.remove('active');
+            document.getElementById('page-question').classList.add('active');
+            currentQ = 0; scores = {}; loadQuestion();
+        }
+
+        function loadQuestion() {
+            const q = questions[currentQ];
+            document.getElementById('q-current').innerText = currentQ + 1;
+            document.getElementById('question-text').innerText = q.text;
+            const area = document.getElementById('options-area');
+            area.innerHTML = '';
+            q.options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerText = opt.text;
+                btn.onclick = () => {
+                    opt.tags.forEach(t => scores[t] = (scores[t] || 0) + 1);
+                    nextQuestion();
+                };
+                area.appendChild(btn);
+            });
+        }
+
+        function nextQuestion() {
+            currentQ++;
+            if (currentQ < questions.length) { loadQuestion(); } else { showResult(); }
+        }
+
+        function showResult() {
+            document.getElementById('page-question').classList.remove('active');
+            document.getElementById('page-loading').classList.add('active');
+
+            let maxScore = -1; let winner = '富';
+            for (const tag in scores) {
+                if (scores[tag] > maxScore) { maxScore = scores[tag]; winner = tag; }
+                else if (scores[tag] === maxScore) { if (Math.random() > 0.5) winner = tag; }
+            }
+
+            const res = animalData[winner];
+            document.getElementById('result-animal').innerText = res.name;
+            document.getElementById('result-blessing').innerHTML = res.blessing;
+            document.getElementById('result-img').src = res.image;
+            
+            // 設定圖片來源連結
+            const sourceLink = document.getElementById('img-source-link');
+            sourceLink.href = res.creditUrl;
+            
+            // --- 隨機挑選 2 本書 ---
+            // 1. 複製書籍陣列以免影響原始資料
+            let availableBooks = [...res.books];
+            // 2. 隨機排序 (Shuffle)
+            availableBooks.sort(() => Math.random() - 0.5);
+            // 3. 取前 2 本
+            const selectedBooks = availableBooks.slice(0, 2);
+
+            // 渲染書籍HTML
+            const bookHtml = selectedBooks.map(book => `
+                <div class="book-item">
+                    <a href="${book.url}" target="_blank" class="book-title">${book.title}</a>
+                    <div style="margin-bottom: 6px;">
+                        <span class="book-reason-tag">推薦理由</span>
+                    </div>
+                    <div class="book-desc">${book.desc}</div>
+                    <a href="${book.url}" target="_blank" class="book-link-btn">前往圖書館借閱 &rarr;</a>
+                </div>
+            `).join('');
+            document.getElementById('book-list').innerHTML = bookHtml;
+
+            setTimeout(() => {
+                document.getElementById('page-loading').classList.remove('active');
+                document.getElementById('page-result').classList.add('active');
+                window.scrollTo(0,0);
+                
+                // 延遲 1.5 秒後跳出領取明信片提示
+                setTimeout(openModal, 1500);
+            }, 1500);
+        }
+
+        // --- Modal 控制 ---
+        function openModal() {
+            document.getElementById('postcard-modal').classList.add('active');
+        }
+        function closeModal() {
+            document.getElementById('postcard-modal').classList.remove('active');
+        }
+
+        function shareResult() {
+            if (navigator.share) {
+                navigator.share({
+                    title: '2026 秘境靈獸尋福',
+                    text: '快來領取你的2026新年守護獸與明信片！',
+                    url: window.location.href
+                });
+            } else { alert('連結已複製！快去分享給朋友吧！'); }
+        }
+    </script>
+</body>
+</html>
