@@ -219,7 +219,7 @@
             <p style="line-height: 1.8; color: #555; margin-bottom: 40px;">
                 新的一年，每一個選擇都代表一種心境。<br>
                 透過三個簡單的提問，<br>
-                我們將揭曉您的專屬 2026 守護動物，<br>
+                我們將揭曉您的專屬 2026 代表動物，<br>
                 並獻上國資圖為您精選的好書。
             </p>
             <button class="btn-primary" onclick="startQuiz()">開始測驗</button>
@@ -235,7 +235,7 @@
 
         <div id="page-loading" class="page">
             <div class="loader"></div>
-            <p>正在尋找您的吉祥動物...</p>
+            <p>正在尋找您的代表動物...</p>
         </div>
 
         <div id="page-result" class="page">
@@ -308,7 +308,7 @@
             }
         ];
 
-        // 書籍資料庫 (已擴充為4本)
+        // 書籍資料庫
         const animalData = {
             '富': {
                 name: '台灣長耳蝠',
@@ -451,8 +451,8 @@
                 window.scrollTo(0,0);
                 
                 // 延遲 3 秒後跳出領取明信片提示
-                setTimeout(openModal, 1500);
-            }, 1500);
+                setTimeout(openModal, 3000);
+            }, 3000);
         }
 
         // --- Modal 控制 ---
@@ -476,6 +476,7 @@
 </body>
 
 </html>
+
 
 
 
