@@ -156,15 +156,35 @@
         }
         .book-link-btn:hover { background-color: #a93226; }
 
-        /* --- 合辦單位 Footer --- */
-        .footer-credit {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-            font-size: 0.95rem;
-            color: #666;
-            font-weight: 500;
-        }
+        /* --- 頁尾單位資訊樣式 --- */
+    .footer-credit {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    display: flex;          /* 啟用彈性佈局 */
+    justify-content: center; /* 水平居中 */
+    align-items: center;    /* 垂直對齊 */
+    gap: 30px;              /* 兩個單位之間的間距 */
+    flex-wrap: wrap;        /* 手機版自動換行 */
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.credit-item {
+    display: flex;
+    align-items: center;    /* 確保文字與 Logo 垂直居中 */
+    gap: 8px;              /* 文字與 Logo 的間距 */
+}
+
+.footer-logo {
+    height: 35px;           /* 👈 固定 Logo 高度，可根據需求調整 */
+    width: auto;
+    object-fit: contain;
+}
+
+.credit-label {
+    font-weight: 500;
+}
 
         /* --- 彈出式提示窗 (Modal) --- */
         .modal-overlay {
@@ -260,9 +280,18 @@
                     <button onclick="location.reload()" style="background:none; border:none; color:#999; margin-top:15px; cursor:pointer; text-decoration:underline;">再玩一次</button>
                 </div>
 
-                <div class="footer-credit">
-                    合辦單位：雪霸國家公園
-                </div>
+<div class="footer-credit">
+    <div class="credit-item">
+        <span class="credit-label">主辦單位：</span>
+        <img src="images/logo.png" alt="主辦單位 Logo" class="footer-logo">
+        <span>您的單位名稱</span>
+    </div>
+
+    <div class="credit-item">
+        <span class="credit-label">合辦單位：</span>
+        <span>雪霸國家公園</span>
+    </div>
+</div>
             </div>
         </div>
     </div>
@@ -476,6 +505,7 @@
 </body>
 
 </html>
+
 
 
 
