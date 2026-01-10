@@ -312,6 +312,7 @@
         </div>
     </div>
 
+    let lastResultAnimal = ""; // 新增這行，用來儲存最後測出的動物名稱
     <script>
         // --- 資料庫 ---
         const questions = [
@@ -449,6 +450,7 @@
             }
 
             const res = animalData[winner];
+            lastResultAnimal = res.name;
             document.getElementById('result-animal').innerText = res.name;
             document.getElementById('result-blessing').innerHTML = res.blessing;
             document.getElementById('result-img').src = res.image;
@@ -497,18 +499,40 @@
         }
 
         function shareResult() {
-            if (navigator.share) {
-                navigator.share({
-                    title: '2026春節吉祥動物尋福',
-                    text: '快來領取你的2026新年吉祥動物與明信片！',
-                    url: window.location.href
-                });
-            } else { alert('連結已複製！快去分享給朋友吧！'); }
-        }
+    // 設定動態分享文字
+    const shareTitle = '2026 秘境靈獸尋福';
+    const shareText = `我的 2026 守護靈獸是【${lastResultAnimal}】！✨\n這份來自雪霸國家公園的祝福好準，快來測測你的守護獸是哪一隻，還能領精美明信片喔！🧧`;
+    const shareUrl = window.location.href;
+
+    if (navigator.share) {
+        // 使用行動裝置的原生分享功能 (LINE, FB, IG等)
+        navigator.share({
+            title: shareTitle,
+            text: shareText,
+            url: shareUrl
+        }).then(() => {
+            console.log('分享成功！');
+        }).catch((error) => {
+            console.log('分享失敗：', error);
+        });
+    } else {
+        // 如果瀏覽器不支援 Web Share API (如桌機版 Chrome)
+        // 則採取複製連結的方式
+        const dummy = document.createElement('textarea');
+        document.body.appendChild(dummy);
+        dummy.value = `${shareText}\n${shareUrl}`;
+        dummy.select();
+        document.execCommand('copy');
+        document.body.removeChild(dummy);
+        
+        alert('分享文字與連結已複製到剪貼簿！\n快去貼給 LINE 好友吧！🧧');
+    }
+}
     </script>
 </body>
 
 </html>
+
 
 
 
