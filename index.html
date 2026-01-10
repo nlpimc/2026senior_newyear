@@ -528,11 +528,18 @@
         
         alert('分享文字與連結已複製到剪貼簿！\n快去貼給 LINE 好友吧！🧧');
     }
+    if (typeof gtag === 'function') {
+        gtag('event', 'share_clicked', {
+            'animal_type': lastResultAnimal
+        });
+    }          
 }
+        
     </script>
 </body>
 
 </html>
+
 
 
 
