@@ -306,7 +306,7 @@
             <h3 class="modal-title">恭喜完成尋福</h3>
             <p class="modal-text">
                 請憑此畫面<br>至3樓期刊櫃台<br>
-                領取您的<b style="color:var(--color-primary);">專屬新年明信片</b>
+                領取您的<b style="color:var(--color-primary);">專屬新年明信片</b><br>送完為止
             </p>
             <button class="btn-primary" style="padding: 10px 30px; font-size: 1rem;" onclick="closeModal()">我知道了</button>
         </div>
@@ -501,8 +501,8 @@
 
         function shareResult() {
     // 設定動態分享文字
-    const shareTitle = '2026 秘境靈獸尋福';
-    const shareText = `我的 2026 守護靈獸是【${lastResultAnimal}】！✨\n這份來自雪霸國家公園的祝福好準，快來測測你的守護獸是哪一隻，還能領精美明信片喔！🧧`;
+    const shareTitle = '2026 春節吉祥動物尋福';
+    const shareText = `我的 2026 代表動物是【${lastResultAnimal}】！✨\快來測測你的代表動物是哪一隻！`;
     const shareUrl = window.location.href;
 
     if (navigator.share) {
@@ -533,6 +533,7 @@
 </body>
 
 </html>
+
 
 
 
